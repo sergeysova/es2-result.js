@@ -4,13 +4,16 @@
   "description": "Your Either class",
   "main": "lib/index.js",
   "scripts": {
-    "test": "eslint . && nyc ava"
+    "test": "eslint . && nyc ava",
+    "coverage": "NODE_ENV=test nyc report --reporter=text-lcov",
+    "report": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
   "license": "MIT",
   "devDependencies": {
     "@atomix/eslint-config": "^6.3.0",
     "ava": "^0.25.0",
+    "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
     "nyc": "^11.6.0"
   }
