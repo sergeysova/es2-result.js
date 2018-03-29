@@ -192,3 +192,19 @@ test('catcheable', (t) => {
   t.deepEqual(Ok.from(1).catch(() => 2), Ok.from(1))
   t.is(Err.from(1).catch(() => 2), 2)
 })
+
+test('promise()', async (t) => {
+  t.true(Ok.from(1).promise() instanceof Promise)
+  // t.true(Err.from(2).promise() instanceof Promise)
+
+  t.notThrows(async () => {
+    t.is(await Ok.from(1).promise(), 1)
+  })
+
+  try {
+    await Err.from(2).promise()
+  }
+  catch (error) {
+    t.is(error, 2)
+  }
+})
