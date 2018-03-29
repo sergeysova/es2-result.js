@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Your Either class",
   "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "eslint . && nyc ava",
     "coverage": "NODE_ENV=test nyc report --reporter=text-lcov",
