@@ -1,3 +1,5 @@
+/* eslint-disable no-magic-numbers, no-unused-vars, id-match */
+/* eslint-disable one-var, one-var-declaration-per-line */
 import test from 'ava'
 
 import { Result, Ok, Err } from '../lib'
@@ -54,14 +56,14 @@ test('isErr()', (t) => {
 })
 
 test('map(fn)', (t) => {
-  t.is(Result.Ok.from(1).map(a => a + 1).unwrapOr(100), 2)
-  t.is(Result.Err.from(1).map(a => a + 1).unwrapOr(100), 100)
+  t.is(Result.Ok.from(1).map((a) => a + 1).unwrapOr(100), 2)
+  t.is(Result.Err.from(1).map((a) => a + 1).unwrapOr(100), 100)
 })
 
 test('mapErr(fn)', (t) => {
-  t.is(Result.Ok.from(2).mapErr(e => 3)._data, 2)
-  t.is(Result.Err.from(2).mapErr(e => 3)._error, 3)
-  t.is(Result.from(2).map(e => 4).mapErr(e => 5)._data, 4)
+  t.is(Result.Ok.from(2).mapErr((e) => 3)._data, 2)
+  t.is(Result.Err.from(2).mapErr((e) => 3)._error, 3)
+  t.is(Result.from(2).map((e) => 4).mapErr((e) => 5)._data, 4)
 })
 
 test('iter()', (t) => {
@@ -180,8 +182,9 @@ test('thenable', async (t) => {
   t.is(await Ok.from(12), 12)
   try {
     await Err.from('throws')
-  } catch(err) {
-    t.is(err, 'throws')
+  }
+  catch (error) {
+    t.is(error, 'throws')
   }
 })
 

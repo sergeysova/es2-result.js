@@ -4,12 +4,14 @@
   "description": "Your Either class",
   "main": "lib/index.js",
   "scripts": {
-    "test": "nyc ava"
+    "test": "eslint . && nyc ava"
   },
   "author": "Sergey Sova <mail@sergeysova.com> (https://sergeysova.com/)",
   "license": "MIT",
   "devDependencies": {
+    "@atomix/eslint-config": "^6.3.0",
     "ava": "^0.25.0",
+    "eslint": "^4.19.1",
     "nyc": "^11.6.0"
   }
 }
