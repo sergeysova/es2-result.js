@@ -1,6 +1,6 @@
 {
   "name": "@es2/result",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Your Either class",
   "main": "lib/index.js",
   "scripts": {
@@ -16,5 +16,18 @@
     "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
     "nyc": "^11.6.0"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeysova/es2-result.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sergeysova/es2-result.js/issues"
+  },
+  "homepage": "https://github.com/sergeysova/es2-result.js#readme"
 }
