@@ -51,6 +51,21 @@ test('Result.err', (t) => {
   t.deepEqual(Result.err(Result.err(1)), Err.of(Err.of(1)))
 })
 
+test('Result.isResult(target)', (t) => {
+  t.true(Result.isResult(Ok.of(1)))
+  t.true(Result.isResult(Err.of(1)))
+  t.true(Result.isResult(Result.of(1)))
+  t.true(Result.isResult(Result.of(new Error('Foo'))))
+
+  t.true(Result.isResult(new (class extends Result.Ok {})()))
+
+  t.false(Result.isResult(new Error('Bar')))
+  t.false(Result.isResult(12))
+  t.false(Result.isResult(Result))
+  t.false(Result.isResult(Result.Ok))
+  t.false(Result.isResult(Result.Err))
+})
+
 test('isOk()', (t) => {
   t.true(Result.of(0).isOk())
   t.false(Result.of(new Error('foo')).isOk())
