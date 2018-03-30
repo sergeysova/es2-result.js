@@ -61,9 +61,9 @@ test('map(fn)', (t) => {
 })
 
 test('mapErr(fn)', (t) => {
-  t.is(Result.Ok.of(2).mapErr((e) => 3)._data, 2)
-  t.is(Result.Err.of(2).mapErr((e) => 3)._error, 3)
-  t.is(Result.of(2).map((e) => 4).mapErr((e) => 5)._data, 4)
+  t.deepEqual(Result.Ok.of(2).mapErr((e) => 3), Ok.of(2))
+  t.deepEqual(Result.Err.of(2).mapErr((e) => 3), Err.of(3))
+  t.deepEqual(Result.of(2).map((e) => 4).mapErr((e) => 5), Ok.of(4))
 })
 
 test('iter()', (t) => {
@@ -90,10 +90,10 @@ test('andThen(fn)', (t) => {
   const sq = (x) => Ok.of(x * x)
   const err = (x) => Err.of(x)
 
-  t.is(Result.of(2).andThen(sq).andThen(sq)._data, 16)
-  t.is(Result.of(2).andThen(sq).andThen(err)._error, 4)
-  t.is(Ok.of(2).andThen(err).andThen(sq)._error, 2)
-  t.is(Err.of(3).andThen(sq).andThen(sq)._error, 3)
+  t.deepEqual(Result.of(2).andThen(sq).andThen(sq), Ok.of(16))
+  t.deepEqual(Result.of(2).andThen(sq).andThen(err), Err.of(4))
+  t.deepEqual(Ok.of(2).andThen(err).andThen(sq), Err.of(2))
+  t.deepEqual(Err.of(3).andThen(sq).andThen(sq), Err.of(3))
 })
 
 test('or(result)', (t) => {
@@ -207,4 +207,9 @@ test('promise()', async (t) => {
   catch (error) {
     t.is(error, 2)
   }
+})
+
+test('swap()', (t) => {
+  t.deepEqual(Ok.of(1).swap(), Err.of(1))
+  t.deepEqual(Err.of(2).swap(), Ok.of(2))
 })

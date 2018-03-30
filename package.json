@@ -24,7 +24,9 @@
     "lib": "lib",
     "test": "test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "fantasy-land": "^3.5.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sergeysova/es2-result.js.git"
