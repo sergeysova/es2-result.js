@@ -213,3 +213,19 @@ test('swap()', (t) => {
   t.deepEqual(Ok.of(1).swap(), Err.of(1))
   t.deepEqual(Err.of(2).swap(), Ok.of(2))
 })
+
+test('combine .and() and .of() to make all() function', (t) => {
+  const all = (ls) => ls.reduce((p, c) => p.and(c), Ok.of(true))
+
+  t.deepEqual(all([Ok.of(1), Ok.of(2)]), Ok.of(2))
+})
+
+test('extract()', (t) => {
+  t.deepEqual(Ok.of(1).extract(), [1])
+  t.deepEqual(Err.of(1).extract(), [])
+})
+
+test('extractErr()', (t) => {
+  t.deepEqual(Ok.of(1).extractErr(), [])
+  t.deepEqual(Err.of(1).extractErr(), [1])
+})
