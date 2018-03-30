@@ -1,6 +1,6 @@
 {
   "name": "@es2/result",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Your Either class",
   "main": "lib/index.js",
   "publishConfig": {
