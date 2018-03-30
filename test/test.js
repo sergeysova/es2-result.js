@@ -254,3 +254,11 @@ test('extractErr()', (t) => {
   t.deepEqual(Ok.of(1).extractErr(), [])
   t.deepEqual(Err.of(1).extractErr(), [1])
 })
+
+test('bimap(f, g)', (t) => {
+  const foo = (x) => x * x
+  const bar = (y) => y + y
+
+  t.deepEqual(Ok.of(4).bimap(foo, bar), Ok.of(16))
+  t.deepEqual(Err.of(4).bimap(foo, bar), Err.of(8))
+})
