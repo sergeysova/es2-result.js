@@ -41,6 +41,16 @@ test('Err.from', (t) => {
   t.is(Result.Err.of(1)._error, 1)
 })
 
+test('Result.ok', (t) => {
+  t.deepEqual(Result.ok(1), Ok.of(1))
+  t.deepEqual(Result.ok(Result.ok(1)), Ok.of(Ok.of(1)))
+})
+
+test('Result.err', (t) => {
+  t.deepEqual(Result.err(1), Err.of(1))
+  t.deepEqual(Result.err(Result.err(1)), Err.of(Err.of(1)))
+})
+
 test('isOk()', (t) => {
   t.true(Result.of(0).isOk())
   t.false(Result.of(new Error('foo')).isOk())
