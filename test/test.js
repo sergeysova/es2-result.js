@@ -188,20 +188,20 @@ test('expectErr(msg)', (t) => {
   })
 })
 
-test('thenable', async (t) => {
-  t.is(await Ok.of(12), 12)
-  try {
-    await Err.of('throws')
-  }
-  catch (error) {
-    t.is(error, 'throws')
-  }
-})
+// test('thenable', async (t) => {
+//   t.is(await Ok.of(12), 12)
+//   try {
+//     await Err.of('throws')
+//   }
+//   catch (error) {
+//     t.is(error, 'throws')
+//   }
+// })
 
-test('catcheable', (t) => {
-  t.deepEqual(Ok.of(1).catch(() => 2), Ok.of(1))
-  t.is(Err.of(1).catch(() => 2), 2)
-})
+// test('catcheable', (t) => {
+//   t.deepEqual(Ok.of(1).catch(() => 2), Ok.of(1))
+//   t.is(Err.of(1).catch(() => 2), 2)
+// })
 
 test('promise()', async (t) => {
   t.true(Ok.of(1).promise() instanceof Promise)
