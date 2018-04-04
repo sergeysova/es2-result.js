@@ -6,6 +6,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "typings": "./index.d.ts",
   "scripts": {
     "test": "eslint . && nyc ava",
     "coverage": "NODE_ENV=test nyc report --reporter=text-lcov",

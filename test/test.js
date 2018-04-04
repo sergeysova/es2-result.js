@@ -206,7 +206,7 @@ test('expectErr :: Result f => f a b ~> String -> b!', (t) => {
   })
 })
 
-test('promise :: Result f, Promise p => f a b ~> p a b', async (t) => {
+test('promise :: (Result f, Promise p) => f a b ~> p a b', async (t) => {
   t.true(Ok(1).promise() instanceof Promise)
   // t.true(Err.from(2).promise() instanceof Promise)
 
@@ -236,12 +236,12 @@ test('combine .and() and () to make all() function', (t) => {
   t.is(all([Ok(1), Ok(2)]).unwrap(), 2)
 })
 
-test('extract :: Result f, Tuple t => Result f a b ~> t a', (t) => {
+test('extract :: (Result f, Tuple t) => Result f a b ~> t a', (t) => {
   t.deepEqual(Ok(1).extract(), [1])
   t.deepEqual(Err(1).extract(), [])
 })
 
-test('extract :: Result f, Tuple t => Result f a b ~> t b', (t) => {
+test('extract :: (Result f, Tuple t) => Result f a b ~> t b', (t) => {
   t.deepEqual(Ok(1).extractErr(), [])
   t.deepEqual(Err(1).extractErr(), [1])
 })
