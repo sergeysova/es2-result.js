@@ -1,7 +1,8 @@
 /* eslint-disable no-magic-numbers, no-unused-vars, id-match */
-/* eslint-disable one-var, one-var-declaration-per-line */
+/* eslint-disable one-var, one-var-declaration-per-line, import/no-extraneous-dependencies */
 import test from 'ava'
 
+import { Option } from '@es2/result'
 import { Result, Ok, Err } from '../lib'
 
 
@@ -246,3 +247,14 @@ test('extract :: (Result f, Tuple t) => Result f a b ~> t b', (t) => {
   t.deepEqual(Err(1).extractErr(), [1])
 })
 
+test('ok :: (Result f, Option t) => Result f a b ~> t a', (t) => {
+  t.true(Ok(1).ok().isSome())
+  t.is(Ok(2).ok().unwrap(), 2)
+  t.true(Err(12).ok().isNone())
+})
+
+test('err :: (Result f, Option t) => Result f a b ~> t b', (t) => {
+  t.true(Err(1).err().isSome())
+  t.is(Err(2).err().unwrap(), 2)
+  t.true(Ok(12).err().isNone())
+})

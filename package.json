@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "@atomix/eslint-config": "^6.3.0",
+    "@es2/option": "^0.1.0",
     "ava": "^0.25.0",
     "babel-eslint": "^8.2.2",
     "coveralls": "^3.0.0",
@@ -27,6 +28,9 @@
   "directories": {
     "lib": "lib",
     "test": "test"
+  },
+  "optionalDependencies": {
+    "@es2/option": "0.*"
   },
   "dependencies": {},
   "repository": {
