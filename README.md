@@ -11,12 +11,12 @@ npm install @es2/result
 
 ```js
 const { Result, Ok, Err } = require('@es2/result')
-Ok.from(2)
-Result.Ok.from(2)
+Ok(2)
+Result.Ok(2)
 
 // Also
 
 import { Result, Ok, Err } from '@es2/result'
-Ok.from(2)
-Result.Ok.from(2)
+Ok(2)
+Result.Ok(2)
 ```
