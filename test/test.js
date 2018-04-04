@@ -48,12 +48,12 @@ test('isErr()', (t) => {
   t.false(Ok.isOk(Err(new Error('foo'))))
 })
 
-test('map(fn)', (t) => {
+test('map(value => value)', (t) => {
   t.is(Result.Ok(1).map((a) => a + 1).unwrapOr(100), 2)
   t.is(Result.Err(1).map((a) => a + 1).unwrapOr(100), 100)
 })
 
-test('mapErr(fn)', (t) => {
+test('mapErr(error => error)', (t) => {
   t.is(Result.Ok(2).mapErr((e) => 3).unwrap(), 2)
   t.is(Result.Err(2).mapErr((e) => 3).unwrapErr(), 3)
   t.is(Ok(2).map((e) => 4).mapErr((e) => 5).unwrap(), 4)
@@ -65,6 +65,22 @@ test('bimap(f, g)', (t) => {
 
   t.is(Ok(4).bimap(foo, bar).unwrap(), 16)
   t.is(Err(4).bimap(foo, bar).unwrapErr(), 8)
+})
+
+test('chain(value => result)', (t) => {
+  t.is(Ok(1).chain((value) => Ok(value + 1)).unwrap(), 2)
+  t.is(Ok(1).chain((value) => Err(value - 1)).unwrapErr(), 0)
+
+  t.is(Err(1).chain((value) => Ok(value + 1)).unwrapErr(), 1)
+  t.is(Err(1).chain((value) => Err(value - 1)).unwrapErr(), 1)
+})
+
+test('chainErr(error => result)', (t) => {
+  t.is(Ok(1).chainErr((value) => Ok(value + 1)).unwrap(), 1)
+  t.is(Ok(1).chainErr((value) => Err(value - 1)).unwrap(), 1)
+
+  t.is(Err(1).chainErr((value) => Ok(value + 1)).unwrap(), 2)
+  t.is(Err(1).chainErr((value) => Err(value - 1)).unwrapErr(), 0)
 })
 
 test('iter()', (t) => {
@@ -198,6 +214,8 @@ test('promise()', async (t) => {
 test('swap()', (t) => {
   t.is(Ok(1).swap().unwrapErr(), 1)
   t.is(Err(2).swap().unwrap(), 2)
+  t.is(Ok(1).swap().swap().unwrap(), 1)
+  t.is(Err(2).swap().swap().unwrapErr(), 2)
 })
 
 test('combine .and() and () to make all() function', (t) => {
