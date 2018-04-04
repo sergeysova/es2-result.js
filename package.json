@@ -16,8 +16,10 @@
   "devDependencies": {
     "@atomix/eslint-config": "^6.3.0",
     "ava": "^0.25.0",
+    "babel-eslint": "^8.2.2",
     "coveralls": "^3.0.0",
     "eslint": "^4.19.1",
+    "flow-bin": "^0.69.0",
     "nyc": "^11.6.0",
     "typescript": "^2.8.1"
   },
