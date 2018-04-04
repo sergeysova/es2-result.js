@@ -26,7 +26,7 @@ export type Result<T, E> = {
    */
   unwrap(): T,
   unwrapOr(value: T): T,
-  unwrapOrElse(fn: (value: T) => T): T,
+  unwrapOrElse(fn: (value: E) => T): T,
   unwrapErr(): E,
 
   /**

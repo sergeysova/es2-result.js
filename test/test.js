@@ -169,7 +169,7 @@ test('unwrapOr :: Result f => f a b ~> a -> a', (t) => {
   t.is(Result.Err('foo').unwrapOr(19), 19)
 })
 
-test('unwrapOrElse :: Result f => f a b ~> (a -> a) -> a', (t) => {
+test('unwrapOrElse :: Result f => f a b ~> (b -> a) -> a', (t) => {
   const count = (x) => x.length
 
   t.is(Ok(2).unwrapOrElse(count), 2)
