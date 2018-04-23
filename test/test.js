@@ -281,4 +281,5 @@ test('encase :: Result f => (r -> a) -> (r -> f a b)', (t) => {
   t.deepEqual(f4().unwrapErr(), new Error('4'), 'wrap exception to Err')
   t.deepEqual(f5(1, 2, 2).unwrapErr(), new Error('5'), 'pass 3 args and wrap exception to Err')
   t.is(f6(1, 2, 3).unwrapErr(), '6', 'wrap throwed string to Err')
+  t.true(f5(1, 2, 3).unwrapErr() instanceof Error)
 })
