@@ -62,7 +62,13 @@ export type ErrConstructor = {
 export type ResultNamespace = {
   Ok: OkConstructor,
   Err: ErrConstructor,
-  of<T, E>(data: T): Result<T, E>,
+  encase<A, Rs, Er = Error>(fn: (a: A) => Rs): ((a: A) => Result<Rs, Er>),
+  encase<A, B, Rs, Er = Error>(fn: (a: A, b: B) => Rs): ((a: A, b: B) => Result<Rs, Er>),
+  encase<A, B, C, Rs, Er = Error>(fn: (a: A, b: B, c: C) => Rs): ((a: A, b: B, c: C) => Result<Rs, Er>),
+  encase<A, B, C, D, Rs, Er = Error>(fn: (a: A, b: B, c: C, d: D) => Rs): ((a: A, b: B, c: C, d: D) => Result<Rs, Er>),
+  encase<A, B, C, D, E, Rs, Er = Error>(fn: (a: A, b: B, c: C, d: D, e: E) => Rs): ((a: A, b: B, c: C, d: D, e: E) => Result<Rs, Er>),
+  encase<A, B, C, D, E, F, Rs, Er = Error>(fn: (a: A, b: B, c: C, d: D, e: E, f: F) => Rs): ((a: A, b: B, c: C, d: D, e: E, f: F) => Result<Rs, Er>),
+  encase<A, B, C, D, E, F, J, Rs, Er = Error>(fn: (a: A, b: B, c: C, d: D, e: E, f: F, j: J) => Rs): ((a: A, b: B, c: C, d: D, e: E, f: F, j: J) => Result<Rs, Er>),
 }
 
 export const Result: ResultNamespace

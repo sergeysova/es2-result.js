@@ -258,3 +258,27 @@ test('err :: (Result f, Option t) => Result f a b ~> t b', (t) => {
   t.is(Err(2).err().unwrap(), 2)
   t.true(Ok(12).err().isNone())
 })
+
+test('encase :: Result f => (r -> a) -> (r -> f a b)', (t) => {
+  t.is(typeof Result.encase(() => {}), 'function', 'encase return function')
+
+  const f1 = Result.encase(() => 1)
+  const f2 = Result.encase((a) => a)
+  const f3 = Result.encase((a, b) => a + b)
+  const f4 = Result.encase(() => {
+    throw new Error('4')
+  })
+  const f5 = Result.encase((a, b, c) => {
+    throw new Error(`${a + b + c}`)
+  })
+  const f6 = Result.encase((a, b, c) => {
+    throw `${a + b + c}` // eslint-disable-line no-throw-literal
+  })
+
+  t.is(f1().unwrap(), 1, 'return Ok wrapped value')
+  t.is(f2(2).unwrap(), 2, 'pass single argument and return Ok')
+  t.is(f3(1, 2).unwrap(), 3, 'pass 2 arguments and return Ok')
+  t.deepEqual(f4().unwrapErr(), new Error('4'), 'wrap exception to Err')
+  t.deepEqual(f5(1, 2, 2).unwrapErr(), new Error('5'), 'pass 3 args and wrap exception to Err')
+  t.is(f6(1, 2, 3).unwrapErr(), '6', 'wrap throwed string to Err')
+})
